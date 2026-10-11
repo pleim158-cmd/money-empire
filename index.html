@@ -24,7 +24,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .screen.active{display:block;animation:fade .25s;}
 @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 
-/* ===== ГЛАВНЫЙ ЭКРАН ===== */
 .wallet-card{
   background:linear-gradient(135deg,#1a1730 0%,#0e0c1a 50%,#0a0810 100%);
   border:1px solid var(--border-2); border-radius:var(--r);
@@ -120,7 +119,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   100%{opacity:0;transform:translateY(-140px) scale(1.3);}
 }
 
-/* ===== ОБЩИЕ ЭЛЕМЕНТЫ ===== */
 .section-h{
   font-size:11px;font-weight:900;color:var(--muted);
   text-transform:uppercase;letter-spacing:1.2px;
@@ -223,11 +221,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   display:flex;justify-content:space-around;
   padding:10px 0 max(10px,env(safe-area-inset-bottom));z-index:90;
 }
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;
-  color:var(--muted-2);font-size:10px;font-weight:700;width:20%;
-  transition:color .2s;padding:4px;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;
+  color:var(--muted-2);font-size:9px;font-weight:700;width:14.28%;
+  transition:color .2s;padding:4px 0;}
 .nav-item.active{color:var(--gold);}
-.nav-ico{font-size:20px;line-height:1;}
+.nav-ico{font-size:19px;line-height:1;}
 
 .modal{display:none;position:fixed;inset:0;background:var(--bg);z-index:100;
   padding:16px;padding-top:max(16px,env(safe-area-inset-top));overflow-y:auto;}
@@ -269,7 +267,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .empty{text-align:center;color:var(--muted);padding:40px 20px;
   font-size:13px;font-weight:600;}
 
-/* Карта в профиле */
 .card-preview{
   width:100%;border-radius:var(--r);padding:20px;position:relative;
   overflow:hidden;margin-bottom:12px;cursor:pointer;
@@ -279,9 +276,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .card-preview.locked{opacity:.5;}
 .card-preview-name{font-size:16px;font-weight:900;color:#fff;margin-bottom:6px;}
 .card-preview-req{font-size:12px;color:rgba(255,255,255,.7);font-weight:600;}
-.card-preview-lock{font-size:32px;margin-bottom:8px;}
 
-/* Forbes */
 .forbes-top3{display:flex;justify-content:center;gap:8px;margin-bottom:20px;
   align-items:flex-end;}
 .forbes-podium{flex:1;text-align:center;}
@@ -312,11 +307,18 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .forbes-item-name{font-size:13px;font-weight:800;}
 .forbes-item-sub{font-size:10px;color:var(--muted);font-weight:600;}
 .forbes-item-money{font-size:12px;font-weight:900;color:var(--gold);}
+
+.soon-block{
+  text-align:center;padding:60px 20px;
+}
+.soon-emoji{font-size:64px;margin-bottom:16px;}
+.soon-title{font-size:18px;font-weight:900;margin-bottom:6px;}
+.soon-sub{font-size:13px;color:var(--muted);font-weight:600;}
 </style>
 </head>
 <body>
 
-<!-- ЭКРАН 1: ЗАРАБОТОК -->
+<!-- ЭКРАН 1: ДОХОД -->
 <section class="screen active" id="screen-earn">
   <div class="wallet-card" id="walletCard" onclick="openCards()">
     <div class="wc-top">
@@ -365,9 +367,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   <div class="biz-grid" id="bizGrid"></div>
 </section>
 
-<!-- ЭКРАН 3: ИНВЕСТИЦИИ -->
+<!-- ЭКРАН 3: БИРЖА -->
 <section class="screen" id="screen-invest">
-  <div class="page-title">Инвестиции</div>
+  <div class="page-title">Биржа</div>
   <div class="page-sub">Вкладывай и зарабатывай на росте</div>
 
   <div class="tabs">
@@ -379,9 +381,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   <div id="invList"></div>
 </section>
 
-<!-- ЭКРАН 4: ПРЕДМЕТЫ -->
+<!-- ЭКРАН 4: ВЕЩИ -->
 <section class="screen" id="screen-items">
-  <div class="page-title">Предметы</div>
+  <div class="page-title">Вещи</div>
   <div class="page-sub">Транспорт и роскошь</div>
 
   <div class="biz-grid" style="margin-bottom:20px;">
@@ -419,7 +421,29 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   <div id="myItemsList"></div>
 </section>
 
-<!-- ЭКРАН 5: ПРОФИЛЬ -->
+<!-- ЭКРАН 5: КАЗИНО -->
+<section class="screen" id="screen-casino">
+  <div class="page-title">Казино</div>
+  <div class="page-sub">Испытай удачу</div>
+  <div class="soon-block">
+    <div class="soon-emoji">🎰</div>
+    <div class="soon-title">Скоро</div>
+    <div class="soon-sub">Раздел в разработке</div>
+  </div>
+</section>
+
+<!-- ЭКРАН 6: АУКЦИОН -->
+<section class="screen" id="screen-auction">
+  <div class="page-title">Аукцион</div>
+  <div class="page-sub">Редкие лоты</div>
+  <div class="soon-block">
+    <div class="soon-emoji">🔨</div>
+    <div class="soon-title">Скоро</div>
+    <div class="soon-sub">Раздел в разработке</div>
+  </div>
+</section>
+
+<!-- ЭКРАН 7: ПРОФИЛЬ -->
 <section class="screen" id="screen-profile">
   <div class="profile-head">
     <div class="profile-ava" id="profAva">👤</div>
@@ -564,17 +588,22 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 
 <!-- НАВИГАЦИЯ -->
 <nav class="nav">
-  <button class="nav-item" data-tab="invest" onclick="switchTab('invest')">
-    <span class="nav-ico">📈</span>Инвестиции</button>
+  <button class="nav-item active" data-tab="earn" onclick="switchTab('earn')">
+    <span class="nav-ico">💰</span>Доход</button>
   <button class="nav-item" data-tab="biz" onclick="switchTab('biz')">
     <span class="nav-ico">🏢</span>Бизнес</button>
-  <button class="nav-item active" data-tab="earn" onclick="switchTab('earn')">
-    <span class="nav-ico">💰</span>Заработок</button>
+  <button class="nav-item" data-tab="invest" onclick="switchTab('invest')">
+    <span class="nav-ico">📈</span>Биржа</button>
   <button class="nav-item" data-tab="items" onclick="switchTab('items')">
-    <span class="nav-ico">📦</span>Предметы</button>
+    <span class="nav-ico">📦</span>Вещи</button>
+  <button class="nav-item" data-tab="casino" onclick="switchTab('casino')">
+    <span class="nav-ico">🎰</span>Казино</button>
+  <button class="nav-item" data-tab="auction" onclick="switchTab('auction')">
+    <span class="nav-ico">🔨</span>Аукцион</button>
   <button class="nav-item" data-tab="profile" onclick="switchTab('profile')">
     <span class="nav-ico">👤</span>Профиль</button>
   </nav>
+
   <script>
 /* ============ ДАННЫЕ ============ */
 
@@ -700,23 +729,14 @@ const FORBES = [
 
 /* ============ СОСТОЯНИЕ ============ */
 let state = {
-  money: 0,
-  totalEarned: 0,
-  clicks: 0,
-  card: 'starter',
-  cardUnlocked: ['starter'],
-  businesses: {},
-  crypto: {},
-  stocks: {},
-  realty: {},
-  ownedItems: {},
-  prices: {},
-  history: {},
-  boostUntil: 0
+  money: 0, totalEarned: 0, clicks: 0,
+  card: 'starter', cardUnlocked: ['starter'],
+  businesses: {}, crypto: {}, stocks: {}, realty: {}, ownedItems: {},
+  prices: {}, history: {}, boostUntil: 0
 };
 
 try{
-  const s = localStorage.getItem('moneyEmpire_v3');
+  const s = localStorage.getItem('moneyEmpire_v4');
   if(s) state = {...state, ...JSON.parse(s)};
 }catch(e){}
 
@@ -782,11 +802,6 @@ function getIncome(){
     const a = STOCKS.find(x=>x.id===id); if(!a) return;
     inc += p.amount * a.div;
   });
-  Object.entries(state.crypto).forEach(([id,p]) => {
-    const a = CRYPTO.find(x=>x.id===id); if(!a) return;
-    const change = state.prices[id] - p.avg;
-    inc += (change >= 0 ? change : change) * 0.001;
-  });
   return inc;
 }
 
@@ -805,7 +820,6 @@ function updateAll(){
   updateTop(); renderBiz(); renderInvest(); renderMyItems();
   checkCardUnlock();
 }
-
 function checkCardUnlock(){
   CARDS.forEach(c => {
     if(state.totalEarned >= c.need && !state.cardUnlocked.includes(c.id)){
@@ -825,7 +839,7 @@ tapBtn.addEventListener('click', e => {
   state.money += val;
   state.totalEarned += val;
   state.clicks++;
-  updateTop(); checkCardUnlock(); save();
+  updateTop(); checkCardUnlock();
   spawnFloat(e, val);
 });
 function spawnFloat(e, val){
@@ -852,6 +866,7 @@ function updateAdBlock(){
   const title = document.getElementById('adTitle');
   const sub = document.getElementById('adSub');
   const icon = document.getElementById('adIcon');
+  if(!block) return;
   if(isBoosted){
     const left = Math.ceil((state.boostUntil - Date.now())/1000);
     block.classList.add('boosted');
@@ -896,6 +911,7 @@ function countBiz(){ let n = 0; BUSINESSES.forEach(b => n += (state.businesses[b
 
 function renderBiz(){
   const grid = document.getElementById('bizGrid');
+  if(!grid) return;
   grid.innerHTML = '';
   const total = countBiz();
 
@@ -979,7 +995,6 @@ function confirmBuyBiz(){
   if(state.money < cost){ alert('Недостаточно денег'); return; }
   state.money -= cost;
   state.businesses[pendingBiz] = count + 1;
-  state.totalEarned += 0;
   save(); updateTop(); renderBiz(); closeBizName();
 }
 
@@ -1003,6 +1018,7 @@ function getBucket(){
 }
 function renderInvest(){
   const box = document.getElementById('invList');
+  if(!box) return;
   box.innerHTML = '';
 
   if(invTab === 'realty'){
@@ -1319,13 +1335,13 @@ function switchTab(tab){
 /* ============ СБРОС ============ */
 function resetGame(){
   if(!confirm('Точно сбросить весь прогресс?')) return;
-  localStorage.removeItem('moneyEmpire_v3');
+  localStorage.removeItem('moneyEmpire_v4');
   location.reload();
 }
 
 /* ============ СОХРАНЕНИЕ ============ */
 function save(){
-  try{ localStorage.setItem('moneyEmpire_v3', JSON.stringify(state)); }catch(e){}
+  try{ localStorage.setItem('moneyEmpire_v4', JSON.stringify(state)); }catch(e){}
 }
 setInterval(save, 5000);
 
@@ -1348,7 +1364,8 @@ setInterval(() => {
     h.push(state.prices[a.id]);
     if(h.length > 50) h.shift();
   });
-  if(document.getElementById('screen-invest').classList.contains('active')) renderInvest();
+  const invScreen = document.getElementById('screen-invest');
+  if(invScreen && invScreen.classList.contains('active')) renderInvest();
   if(currentAsset) refreshAsset();
 }, 3000);
 
