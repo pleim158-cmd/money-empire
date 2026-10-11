@@ -9,7 +9,7 @@
 :root{
   --bg:#08080c; --bg-2:#0e0e14; --card:#14141c; --card-2:#1a1a24;
   --border:#22222e; --border-2:#2e2e3c;
-  --gold:#f4d160; --gold-2:#d4af37;
+  --gold:#f4d160; --gold-2:#d4af37; --gold-l:rgba(244,209,96,.12);
   --text:#f4f2f7; --muted:#8e8b9a; --muted-2:#5c5a68;
   --green:#4ade80; --red:#ef4444; --blue:#5b9eff; --purple:#a78bfa;
   --r:18px; --r-sm:12px;
@@ -20,19 +20,17 @@ body{background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;
   padding-bottom:80px;}
 button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 
-/* ЭКРАНЫ */
-.screen{display:none;padding:14px;padding-top:14px;}
+.screen{display:none;padding:14px;}
 .screen.active{display:block;animation:fade .25s;}
 @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
 
-/* ======= ГЛАВНЫЙ ЭКРАН ======= */
-
-/* Карта-кошелёк */
+/* ===== ГЛАВНЫЙ ЭКРАН ===== */
 .wallet-card{
   background:linear-gradient(135deg,#1a1730 0%,#0e0c1a 50%,#0a0810 100%);
   border:1px solid var(--border-2); border-radius:var(--r);
   padding:20px; margin-bottom:12px; position:relative; overflow:hidden;
   box-shadow:0 8px 32px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.04);
+  transition:all .5s;
 }
 .wallet-card::before{
   content:'';position:absolute;top:-50%;right:-30%;width:80%;height:180%;
@@ -49,7 +47,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .wc-dots{margin-top:16px;display:flex;gap:4px;position:relative;}
 .wc-dots span{width:26px;height:3px;background:var(--gold-2);border-radius:2px;opacity:.6;}
 
-/* Прогресс уровня */
 .level-block{
   background:var(--card);border:1px solid var(--border);border-radius:var(--r);
   padding:14px 16px;margin-bottom:12px;
@@ -58,13 +55,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   font-size:13px;font-weight:700;margin-bottom:10px;}
 .lv-left{color:var(--text);}
 .lv-right{color:var(--green);}
-.lv-bar{height:6px;background:var(--bg-2);border-radius:3px;overflow:hidden;
-  margin-bottom:6px;}
+.lv-bar{height:6px;background:var(--bg-2);border-radius:3px;overflow:hidden;margin-bottom:6px;}
 .lv-fill{height:100%;background:linear-gradient(90deg,var(--gold-2),var(--gold));
   transition:width .4s cubic-bezier(.22,1,.36,1);}
 .lv-target{font-size:11px;color:var(--muted);text-align:right;font-weight:600;}
 
-/* Реклама-буст */
 .ad-block{
   background:linear-gradient(135deg,rgba(74,222,128,.15),rgba(74,222,128,.06));
   border:1px solid rgba(74,222,128,.3);border-radius:var(--r);
@@ -79,8 +74,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 }
 .ad-icon{
   width:40px;height:40px;border-radius:12px;background:rgba(74,222,128,.2);
-  display:flex;align-items:center;justify-content:center;font-size:20px;
-  flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;
 }
 .ad-block.boosted .ad-icon{background:rgba(244,209,96,.25);}
 .ad-text{flex:1;min-width:0;}
@@ -88,7 +82,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .ad-block.boosted .ad-title{color:var(--gold);}
 .ad-sub{font-size:11px;color:var(--muted);font-weight:600;}
 
-/* Клик-зона */
 .tap-zone{
   min-height:calc(100vh - 480px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -127,7 +120,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   100%{opacity:0;transform:translateY(-140px) scale(1.3);}
 }
 
-/* ======= ОБЩИЕ ЭЛЕМЕНТЫ ======= */
+/* ===== ОБЩИЕ ЭЛЕМЕНТЫ ===== */
 .section-h{
   font-size:11px;font-weight:900;color:var(--muted);
   text-transform:uppercase;letter-spacing:1.2px;
@@ -141,7 +134,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);
   padding:16px;margin-bottom:10px;}
 
-/* Табы */
 .tabs{display:flex;gap:4px;background:var(--bg-2);border-radius:14px;
   padding:4px;margin-bottom:16px;}
 .tab{flex:1;padding:10px 6px;border-radius:10px;font-size:13px;font-weight:700;
@@ -149,7 +141,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .tab.active{background:var(--card-2);color:var(--text);
   box-shadow:0 2px 8px rgba(0,0,0,.3);}
 
-/* Список активов */
 .asset-row{
   background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);
   padding:12px 14px;display:flex;align-items:center;gap:12px;
@@ -171,7 +162,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .asset-change.up{color:var(--green);}
 .asset-change.down{color:var(--red);}
 
-/* Карточки бизнесов (крупные) */
 .biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .biz-card{
   background:var(--card);border:1px solid var(--border);border-radius:var(--r);
@@ -190,11 +180,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .biz-price{font-size:13px;font-weight:800;color:var(--gold);}
 .biz-count{
   position:absolute;top:10px;right:10px;background:var(--gold);
-  color:#0a0a0a;font-size:10px;font-weight:900;padding:3px 7px;
-  border-radius:8px;
+  color:#0a0a0a;font-size:10px;font-weight:900;padding:3px 7px;border-radius:8px;
 }
 
-/* Суммарный доход */
 .income-card{
   background:linear-gradient(135deg,var(--card) 0%,var(--card-2) 100%);
   border:1px solid var(--border-2);border-radius:var(--r);padding:18px;
@@ -204,7 +192,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .income-label{font-size:11px;color:var(--muted);font-weight:700;
   text-transform:uppercase;letter-spacing:.8px;margin-top:4px;}
 
-/* Профиль */
 .profile-head{text-align:center;padding:16px 0 24px;}
 .profile-ava{
   width:88px;height:88px;border-radius:50%;
@@ -217,7 +204,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .profile-name{font-size:22px;font-weight:900;margin-bottom:4px;}
 .profile-lvl{color:var(--gold);font-size:13px;font-weight:800;}
 
-/* Разбивка активов */
 .breakdown{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .bd-item{
   background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);
@@ -231,7 +217,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;padding-left:6px;}
 .bd-val{font-size:14px;font-weight:900;color:var(--text);padding-left:6px;}
 
-/* Нижнее меню */
 .nav{
   position:fixed;bottom:0;left:0;right:0;
   background:var(--bg-2);border-top:1px solid var(--border);
@@ -244,7 +229,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 .nav-item.active{color:var(--gold);}
 .nav-ico{font-size:20px;line-height:1;}
 
-/* Модалки */
 .modal{display:none;position:fixed;inset:0;background:var(--bg);z-index:100;
   padding:16px;padding-top:max(16px,env(safe-area-inset-top));overflow-y:auto;}
 .modal.active{display:block;animation:fade .25s;}
@@ -284,15 +268,57 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 
 .empty{text-align:center;color:var(--muted);padding:40px 20px;
   font-size:13px;font-weight:600;}
+
+/* Карта в профиле */
+.card-preview{
+  width:100%;border-radius:var(--r);padding:20px;position:relative;
+  overflow:hidden;margin-bottom:12px;cursor:pointer;
+  transition:transform .15s;
+}
+.card-preview:active{transform:scale(.98);}
+.card-preview.locked{opacity:.5;}
+.card-preview-name{font-size:16px;font-weight:900;color:#fff;margin-bottom:6px;}
+.card-preview-req{font-size:12px;color:rgba(255,255,255,.7);font-weight:600;}
+.card-preview-lock{font-size:32px;margin-bottom:8px;}
+
+/* Forbes */
+.forbes-top3{display:flex;justify-content:center;gap:8px;margin-bottom:20px;
+  align-items:flex-end;}
+.forbes-podium{flex:1;text-align:center;}
+.forbes-ava{
+  width:70px;height:70px;border-radius:50%;margin:0 auto 8px;
+  background:linear-gradient(135deg,#4a5568,#2d3748);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;color:#fff;font-weight:900;
+  border:3px solid var(--gold);
+}
+.forbes-ava.gold{border-color:#ffd700;width:86px;height:86px;font-size:34px;}
+.forbes-ava.bronze{border-color:#cd7f32;}
+.forbes-name{font-size:12px;font-weight:800;margin-bottom:2px;}
+.forbes-money{font-size:11px;color:var(--gold);font-weight:800;}
+.forbes-list{display:flex;flex-direction:column;gap:6px;}
+.forbes-item{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:10px 12px;display:flex;align-items:center;gap:10px;
+}
+.forbes-rank{font-size:14px;font-weight:900;color:var(--muted);width:24px;}
+.forbes-ava-sm{
+  width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#4a5568,#2d3748);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:900;color:#fff;
+}
+.forbes-info{flex:1;min-width:0;}
+.forbes-item-name{font-size:13px;font-weight:800;}
+.forbes-item-sub{font-size:10px;color:var(--muted);font-weight:600;}
+.forbes-item-money{font-size:12px;font-weight:900;color:var(--gold);}
 </style>
 </head>
 <body>
 
 <!-- ЭКРАН 1: ЗАРАБОТОК -->
 <section class="screen active" id="screen-earn">
-
-  <!-- Карта-кошелёк -->
-  <div class="wallet-card">
+  <div class="wallet-card" id="walletCard" onclick="openCards()">
     <div class="wc-top">
       <span>ИМПЕРИЯ</span>
       <span class="num">•••• 7439</span>
@@ -302,17 +328,15 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
     <div class="wc-dots"><span></span><span></span><span></span><span></span></div>
   </div>
 
-  <!-- Уровень и клик -->
   <div class="level-block">
     <div class="lv-row">
       <span class="lv-left" id="lvText">1 уровень</span>
-      <span class="lv-right" id="lvPerClick">$1,00 за клик</span>
+      <span class="lv-right" id="lvPerClick">$1 за клик</span>
     </div>
     <div class="lv-bar"><div class="lv-fill" id="lvFill" style="width:0%"></div></div>
     <div class="lv-target" id="lvTarget">Цель: $1 000</div>
   </div>
 
-  <!-- Реклама-буст -->
   <div class="ad-block" id="adBlock" onclick="watchAd()">
     <div class="ad-icon" id="adIcon">▶️</div>
     <div class="ad-text">
@@ -321,25 +345,23 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
     </div>
   </div>
 
-  <!-- Клик-зона -->
   <div class="tap-zone" id="tapZone">
     <button class="tap-btn" id="tapBtn">👆</button>
     <div class="tap-hint">Кликай в этой области,<br>чтобы зарабатывать деньги</div>
   </div>
-
 </section>
 
 <!-- ЭКРАН 2: БИЗНЕС -->
 <section class="screen" id="screen-biz">
   <div class="page-title">Бизнес</div>
-  <div class="page-sub">Открывай компании и получай пассивный доход</div>
+  <div class="page-sub">Открывай компании и получай доход</div>
 
   <div class="income-card">
     <div class="income-val" id="bizIncome">$0,00</div>
     <div class="income-label">Суммарный доход в час</div>
   </div>
 
-  <div class="section-h">Мои компании <span id="bizCount" style="color:var(--muted-2);float:right;">0/11</span></div>
+  <div class="section-h">Мои компании <span id="bizCount" style="color:var(--muted-2);float:right;">0/10</span></div>
   <div class="biz-grid" id="bizGrid"></div>
 </section>
 
@@ -360,10 +382,41 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
 <!-- ЭКРАН 4: ПРЕДМЕТЫ -->
 <section class="screen" id="screen-items">
   <div class="page-title">Предметы</div>
-  <div class="page-sub">Коллекции и апгрейды</div>
+  <div class="page-sub">Транспорт и роскошь</div>
 
-  <div class="section-h">Коллекции</div>
-  <div class="biz-grid" id="collectionsGrid"></div>
+  <div class="biz-grid" style="margin-bottom:20px;">
+    <div class="biz-card" onclick="openShop('auto')">
+      <div class="biz-icon" style="background:#5b9eff22;color:#5b9eff;font-size:26px;">🏪</div>
+      <div>
+        <div class="biz-name">Автосалон</div>
+        <div class="biz-meta">Машины</div>
+      </div>
+    </div>
+    <div class="biz-card" onclick="openShop('avia')">
+      <div class="biz-icon" style="background:#4ade8022;color:#4ade80;font-size:26px;">🏭</div>
+      <div>
+        <div class="biz-name">Авиамагазин</div>
+        <div class="biz-meta">Самолёты</div>
+      </div>
+    </div>
+    <div class="biz-card" onclick="openShop('yacht')">
+      <div class="biz-icon" style="background:#a78bfa22;color:#a78bfa;font-size:26px;">🛥</div>
+      <div>
+        <div class="biz-name">Яхт-шоп</div>
+        <div class="biz-meta">Яхты</div>
+      </div>
+    </div>
+    <div class="biz-card locked">
+      <div class="biz-icon" style="background:#f4d16022;color:#f4d160;font-size:26px;">💎</div>
+      <div>
+        <div class="biz-name">Коллекции</div>
+        <div class="biz-meta">Скоро</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-h">Мои активы</div>
+  <div id="myItemsList"></div>
 </section>
 
 <!-- ЭКРАН 5: ПРОФИЛЬ -->
@@ -383,28 +436,49 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   <div class="breakdown">
     <div class="bd-item" style="--bd-color:#5b9eff">
       <div class="bd-label">Баланс</div>
-      <div class="bd-val" id="bdCash">$0,00</div>
+      <div class="bd-val" id="bdCash">$0</div>
     </div>
     <div class="bd-item" style="--bd-color:#4ade80">
       <div class="bd-label">Бизнесы</div>
-      <div class="bd-val" id="bdBiz">$0,00</div>
+      <div class="bd-val" id="bdBiz">$0</div>
     </div>
     <div class="bd-item" style="--bd-color:#f4d160">
       <div class="bd-label">Акции</div>
-      <div class="bd-val" id="bdStocks">$0,00</div>
+      <div class="bd-val" id="bdStocks">$0</div>
     </div>
     <div class="bd-item" style="--bd-color:#a78bfa">
       <div class="bd-label">Крипта</div>
-      <div class="bd-val" id="bdCrypto">$0,00</div>
+      <div class="bd-val" id="bdCrypto">$0</div>
     </div>
     <div class="bd-item" style="--bd-color:#5b9eff">
       <div class="bd-label">Недвижимость</div>
-      <div class="bd-val" id="bdRealty">$0,00</div>
+      <div class="bd-val" id="bdRealty">$0</div>
     </div>
     <div class="bd-item" style="--bd-color:#ef4444">
-      <div class="bd-label">Кликов</div>
-      <div class="bd-val" id="bdClicks">0</div>
+      <div class="bd-label">Транспорт</div>
+      <div class="bd-val" id="bdTransport">$0</div>
     </div>
+  </div>
+
+  <div class="section-h">Статистика</div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;">
+      <span style="color:var(--muted);font-weight:600;">Кликов сделано</span>
+      <span style="font-weight:800;" id="stClicks">0</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;">
+      <span style="color:var(--muted);font-weight:600;">Куплено бизнесов</span>
+      <span style="font-weight:800;" id="stBiz">0</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;">
+      <span style="color:var(--muted);font-weight:600;">Всего заработано</span>
+      <span style="font-weight:800;color:var(--gold);" id="stEarned">$0</span>
+    </div>
+  </div>
+
+  <div class="section-h" onclick="openForbes()" style="cursor:pointer;display:flex;justify-content:space-between;">
+    <span>Список Forbes</span>
+    <span style="color:var(--gold);">›</span>
   </div>
 
   <div class="section-h">Настройки</div>
@@ -420,11 +494,27 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   </div>
 </section>
 
+<!-- МОДАЛКА КАРТ -->
+<div class="modal" id="cardsModal">
+  <button class="back-btn" onclick="closeCards()">← Назад</button>
+  <div class="modal-h">Мои карты</div>
+  <div class="modal-sub">Открываются с ростом состояния</div>
+  <div id="cardsList"></div>
+</div>
+
+<!-- МОДАЛКА МАГАЗИНА -->
+<div class="modal" id="shopModal">
+  <button class="back-btn" onclick="closeShop()">← Назад</button>
+  <div class="modal-h" id="shopTitle">Автосалон</div>
+  <div class="modal-sub" id="shopSub">Покупка транспорта</div>
+  <div id="shopList"></div>
+</div>
+
 <!-- МОДАЛКА АКТИВА -->
 <div class="modal" id="assetModal">
   <button class="back-btn" onclick="closeAsset()">← Назад</button>
-  <div class="modal-h" id="assetName">Bitcoin</div>
-  <div class="modal-sub" id="assetTicker">BTC</div>
+  <div class="modal-h" id="assetName">Apple</div>
+  <div class="modal-sub" id="assetTicker">AAPL</div>
 
   <div class="chart-wrap">
     <div class="chart-price" id="assetPrice">$0</div>
@@ -442,6 +532,36 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
   </div>
 </div>
 
+<!-- МОДАЛКА ВЫБОРА БИЗНЕСА -->
+<div class="modal" id="bizPickerModal">
+  <button class="back-btn" onclick="closeBizPicker()">← Назад</button>
+  <div class="modal-h">Новый бизнес</div>
+  <div class="modal-sub">Выберите категорию</div>
+  <div id="bizPickerList"></div>
+</div>
+
+<!-- МОДАЛКА ИМЕНИ БИЗНЕСА -->
+<div class="modal" id="bizNameModal">
+  <button class="back-btn" onclick="closeBizName()">← Назад</button>
+  <div class="modal-h" id="bizNameTitle">Название бизнеса</div>
+  <div class="modal-sub">Придумайте имя вашей компании</div>
+  <input type="text" class="input" id="bizNameInput" placeholder="Например: Моя Кофейня" maxlength="24">
+  <div class="income-card" style="margin-top:14px;">
+    <div class="income-label">Стоимость открытия</div>
+    <div class="income-val" id="bizNameCost">$0</div>
+  </div>
+  <button class="trade-btn buy" style="width:100%;margin-top:14px;" onclick="confirmBuyBiz()">Открыть бизнес</button>
+</div>
+
+<!-- МОДАЛКА FORBES -->
+<div class="modal" id="forbesModal">
+  <button class="back-btn" onclick="closeForbes()">← Назад</button>
+  <div class="modal-h">Список Forbes</div>
+  <div class="modal-sub">Самые богатые люди мира</div>
+  <div class="forbes-top3" id="forbesTop3"></div>
+  <div class="forbes-list" id="forbesList"></div>
+</div>
+
 <!-- НАВИГАЦИЯ -->
 <nav class="nav">
   <button class="nav-item" data-tab="invest" onclick="switchTab('invest')">
@@ -454,118 +574,168 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;}
     <span class="nav-ico">📦</span>Предметы</button>
   <button class="nav-item" data-tab="profile" onclick="switchTab('profile')">
     <span class="nav-ico">👤</span>Профиль</button>
-</nav>
+  </nav>
+  <script>
+/* ============ ДАННЫЕ ============ */
 
-<script>
-/* ========== ДАННЫЕ ========== */
-
-const BUSINESSES = [
-  {id:'shop',   name:'Продажа',       icon:'🛍',  color:'#4ade80', price:4999,   income:5},
-  {id:'taxi',   name:'Таксопарк',     icon:'🚕',  color:'#f4d160', price:9999,   income:15},
-  {id:'logi',   name:'Перевозки',     icon:'🚚',  color:'#fb923c', price:19899,  income:40},
-  {id:'prod',   name:'Производство',  icon:'🏭',  color:'#5b9eff', price:24999,  income:80},
-  {id:'build',  name:'Строительство', icon:'🏗',  color:'#ef4444', price:35400,  income:130},
-  {id:'auto',   name:'Автодилер',     icon:'🚗',  color:'#a78bfa', price:40000,  income:200},
-  {id:'farm',   name:'Ферма',         icon:'🌾',  color:'#22c55e', price:75000,  income:450},
-  {id:'bank',   name:'Банк',          icon:'🏦',  color:'#eab308', price:200000, income:1500},
-  {id:'it',     name:'IT-компания',   icon:'💻',  color:'#06b6d4', price:500000, income:5000},
-  {id:'oil',    name:'Нефтегаз',      icon:'🛢',  color:'#64748b', price:2000000,income:25000},
-  {id:'space',  name:'Космокомпания', icon:'🚀',  color:'#ec4899', price:10000000,income:150000}
+const CARDS = [
+  {id:'starter', name:'Стартапер',      need:0,        grad:'linear-gradient(135deg,#2a2a3a,#1a1a24)'},
+  {id:'entrepr', name:'Предприниматель',need:100000,   grad:'linear-gradient(135deg,#3a4a5a,#1e293b)'},
+  {id:'invest',  name:'Инвестор',       need:500000,   grad:'linear-gradient(135deg,#6b7280,#374151)'},
+  {id:'magnat',  name:'Магнат',         need:5000000,  grad:'linear-gradient(135deg,#8b6f47,#5c4525)'},
+  {id:'oligarh', name:'Олигарх',        need:25000000, grad:'linear-gradient(135deg,#d4af37,#8a6d1f)'},
+  {id:'imper',   name:'Император',      need:100000000,grad:'linear-gradient(135deg,#ffd700,#b8860b,#8b6914)'}
 ];
 
-const CRYPTO = [
-  {id:'btc',name:'Bitcoin',  ticker:'BTC', start:60000,vol:.030,color:'#f7931a'},
-  {id:'eth',name:'Ethereum', ticker:'ETH', start:3000, vol:.040,color:'#627eea'},
-  {id:'ton',name:'Toncoin',  ticker:'TON', start:5,    vol:.060,color:'#0098ea'},
-  {id:'sol',name:'Solana',   ticker:'SOL', start:150,  vol:.065,color:'#9945ff'},
-  {id:'bnb',name:'BNB',      ticker:'BNB', start:600,  vol:.040,color:'#f0b90b'},
-  {id:'xrp',name:'Ripple',   ticker:'XRP', start:0.5,  vol:.055,color:'#23292f'},
-  {id:'doge',name:'Dogecoin',ticker:'DOGE',start:0.1,  vol:.100,color:'#c2a633'},
-  {id:'ada',name:'Cardano',  ticker:'ADA', start:0.4,  vol:.060,color:'#0033ad'},
-  {id:'dot',name:'Polkadot', ticker:'DOT', start:7,    vol:.055,color:'#e6007a'},
-  {id:'matic',name:'Polygon',ticker:'MATIC',start:0.8, vol:.070,color:'#8247e5'}
+const BUSINESSES = [
+  {id:'shop',   name:'Продажа',       icon:'🛍',  color:'#4ade80', price:4999,      income:300},
+  {id:'taxi',   name:'Таксопарк',     icon:'🚕',  color:'#f4d160', price:9999,      income:900},
+  {id:'logi',   name:'Перевозки',     icon:'🚚',  color:'#fb923c', price:19899,     income:2400},
+  {id:'prod',   name:'Производство',  icon:'🏭',  color:'#5b9eff', price:24999,     income:4800},
+  {id:'build',  name:'Строительство', icon:'🏗',  color:'#ef4444', price:35400,     income:7800},
+  {id:'auto',   name:'Автодилер',     icon:'🚗',  color:'#a78bfa', price:40000,     income:12000},
+  {id:'farm',   name:'Ферма',         icon:'🌾',  color:'#22c55e', price:75000,     income:27000},
+  {id:'bank',   name:'Банк',          icon:'🏦',  color:'#eab308', price:200000,    income:90000},
+  {id:'it',     name:'IT-компания',   icon:'💻',  color:'#06b6d4', price:500000,    income:300000},
+  {id:'oil',    name:'Нефтегаз',      icon:'🛢',  color:'#64748b', price:2000000,   income:1500000},
+  {id:'space',  name:'Космокомпания', icon:'🚀',  color:'#ec4899', price:10000000,  income:9000000}
 ];
 
 const STOCKS = [
-  {id:'aapl',name:'Apple',    ticker:'AAPL',start:180,vol:.020,color:'#a3a3a3'},
-  {id:'tsla',name:'Tesla',    ticker:'TSLA',start:250,vol:.035,color:'#e82127'},
-  {id:'googl',name:'Google',  ticker:'GOOGL',start:140,vol:.018,color:'#4285f4'},
-  {id:'msft',name:'Microsoft',ticker:'MSFT',start:380,vol:.015,color:'#00a4ef'},
-  {id:'amzn',name:'Amazon',   ticker:'AMZN',start:160,vol:.022,color:'#ff9900'},
-  {id:'nvda',name:'Nvidia',   ticker:'NVDA',start:500,vol:.030,color:'#76b900'},
-  {id:'yandx',name:'Яндекс',  ticker:'YNDX',start:4000,vol:.025,color:'#fc3f1d'},
-  {id:'sber',name:'Сбербанк', ticker:'SBER',start:280,vol:.020,color:'#21a038'},
-  {id:'gazp',name:'Газпром',  ticker:'GAZP',start:160,vol:.022,color:'#0079c2'},
-  {id:'sams',name:'Samsung',  ticker:'SSNLF',start:70, vol:.020,color:'#1428a0'}
+  {id:'aapl',name:'Apple',    ticker:'AAPL',start:180,vol:.02,color:'#a3a3a3',div:.5},
+  {id:'tsla',name:'Tesla',    ticker:'TSLA',start:250,vol:.035,color:'#e82127',div:0},
+  {id:'googl',name:'Google',  ticker:'GOOGL',start:140,vol:.018,color:'#4285f4',div:.4},
+  {id:'msft',name:'Microsoft',ticker:'MSFT',start:380,vol:.015,color:'#00a4ef',div:.7},
+  {id:'amzn',name:'Amazon',   ticker:'AMZN',start:160,vol:.022,color:'#ff9900',div:0},
+  {id:'nvda',name:'Nvidia',   ticker:'NVDA',start:500,vol:.030,color:'#76b900',div:.1},
+  {id:'yandex',name:'Яндекс', ticker:'YNDX',start:4000,vol:.025,color:'#fc3f1d',div:.3},
+  {id:'sber',name:'Сбербанк', ticker:'SBER',start:280,vol:.020,color:'#21a038',div:1.2},
+  {id:'gazp',name:'Газпром',  ticker:'GAZP',start:160,vol:.022,color:'#0079c2',div:2.1},
+  {id:'ko',  name:'Coca-Cola',ticker:'KO',  start:55, vol:.012,color:'#ef4444',div:3.1},
+  {id:'mcd', name:'McDonalds',ticker:'MCD', start:290,vol:.014,color:'#fbbf24',div:2.3},
+  {id:'v',   name:'Visa',     ticker:'V',   start:270,vol:.016,color:'#1a1f71',div:.8},
+  {id:'dis', name:'Disney',   ticker:'DIS', start:100,vol:.024,color:'#113ccf',div:.5},
+  {id:'nke', name:'Nike',     ticker:'NKE', start:90, vol:.020,color:'#111',div:1.3},
+  {id:'xom', name:'ExxonMobil',ticker:'XOM',start:110,vol:.020,color:'#ef4444',div:3.5}
+];
+
+const CRYPTO = [
+  {id:'btc',name:'Bitcoin',  ticker:'BTC', start:60000,vol:.030,color:'#f7931a',div:.05},
+  {id:'eth',name:'Ethereum', ticker:'ETH', start:3000, vol:.040,color:'#627eea',div:.1},
+  {id:'ton',name:'Toncoin',  ticker:'TON', start:5,    vol:.060,color:'#0098ea',div:0},
+  {id:'sol',name:'Solana',   ticker:'SOL', start:150,  vol:.065,color:'#9945ff',div:.15},
+  {id:'bnb',name:'BNB',      ticker:'BNB', start:600,  vol:.040,color:'#f0b90b',div:.2},
+  {id:'xrp',name:'Ripple',   ticker:'XRP', start:0.5,  vol:.055,color:'#23292f',div:0},
+  {id:'doge',name:'Dogecoin',ticker:'DOGE',start:0.1,  vol:.100,color:'#c2a633',div:0},
+  {id:'ada',name:'Cardano',  ticker:'ADA', start:0.4,  vol:.060,color:'#0033ad',div:.1},
+  {id:'dot',name:'Polkadot', ticker:'DOT', start:7,    vol:.055,color:'#e6007a',div:.2},
+  {id:'matic',name:'Polygon',ticker:'MATIC',start:0.8, vol:.070,color:'#8247e5',div:.15},
+  {id:'ltc',name:'Litecoin', ticker:'LTC', start:80,   vol:.040,color:'#a3a3a3',div:.1},
+  {id:'trx',name:'Tron',     ticker:'TRX', start:0.1,  vol:.050,color:'#e50915',div:.1}
 ];
 
 const REALTY = [
-  {id:'studio',name:'Студия',        ticker:'STUDIO',start:50000, vol:.010,color:'#94a3b8'},
-  {id:'flat',  name:'Квартира',      ticker:'FLAT',  start:200000,vol:.012,color:'#5b9eff'},
-  {id:'house', name:'Дом',           ticker:'HOUSE', start:500000,vol:.015,color:'#22c55e'},
-  {id:'office',name:'Офис',          ticker:'OFFICE',start:1000000,vol:.018,color:'#f4d160'},
-  {id:'mall',  name:'Торговый центр',ticker:'MALL',  start:5000000,vol:.020,color:'#ec4899'},
-  {id:'tower', name:'Небоскрёб',     ticker:'TOWER', start:20000000,vol:.022,color:'#a78bfa'}
+  {id:'studio',name:'Студия в Москве',    icon:'🏠',price:5000000,   income:20000,   color:'#94a3b8'},
+  {id:'flat',  name:'Квартира в Дубае',   icon:'🏢',price:25000000,  income:120000,  color:'#5b9eff'},
+  {id:'house', name:'Дом в Испании',      icon:'🏡',price:80000000,  income:400000,  color:'#22c55e'},
+  {id:'office',name:'Офис в Нью-Йорке',   icon:'🏛',price:300000000, income:1800000, color:'#f4d160'},
+  {id:'mall',  name:'Торговый центр',     icon:'🏬',price:1500000000,income:9000000, color:'#ec4899'},
+  {id:'tower', name:'Небоскрёб',          icon:'🏙',price:8000000000,income:60000000,color:'#a78bfa'},
+  {id:'island',name:'Остров в Карибах',   icon:'🏝',price:50000000000,income:400000000,color:'#06b6d4'},
+  {id:'resort',name:'Курорт на Мальдивах',icon:'🌴',price:200000000000,income:2000000000,color:'#fbbf24'}
 ];
 
-const COLLECTIONS = [
-  {name:'Монеты',       icon:'🪙', total:20},
-  {name:'Картины',      icon:'🎨', total:25},
-  {name:'Автомобили',   icon:'🏎',  total:20},
-  {name:'Часы',         icon:'⌚',  total:15},
-  {name:'Яхты',         icon:'🛥',  total:10},
-  {name:'Острова',      icon:'🏝',  total:5}
+const SHOP_ITEMS = {
+  auto: {
+    title:'Автосалон', sub:'Купить автомобиль',
+    items:[
+      {id:'car1',name:'Honda Civic',      icon:'🚗',price:2500,     color:'#94a3b8'},
+      {id:'car2',name:'Chevrolet Aveo',   icon:'🚙',price:8000,     color:'#5b9eff'},
+      {id:'car3',name:'Ford Focus',       icon:'🚗',price:25000,    color:'#3b82f6'},
+      {id:'car4',name:'Toyota Camry',     icon:'🚘',price:120000,   color:'#a3a3a3'},
+      {id:'car5',name:'BMW X5',           icon:'🚗',price:5000000,  color:'#1e40af'},
+      {id:'car6',name:'Mercedes S-Class', icon:'🚙',price:25000000, color:'#111'},
+      {id:'car7',name:'Bentley Continental',icon:'🚗',price:150000000,color:'#7c2d12'},
+      {id:'car8',name:'Bugatti Chiron',   icon:'🏎',price:2500000000,color:'#dc2626'}
+    ]
+  },
+  avia: {
+    title:'Авиамагазин', sub:'Купить авиатранспорт',
+    items:[
+      {id:'av1',name:'Cessna 150',        icon:'🛩',price:45000,     color:'#fbbf24'},
+      {id:'av2',name:'Robinson R44',      icon:'🚁',price:124000,    color:'#3b82f6'},
+      {id:'av3',name:'Beechcraft Bonanza',icon:'✈️',price:700000,    color:'#f4d160'},
+      {id:'av4',name:'Gulfstream G650',   icon:'🛫',price:60000000,  color:'#a3a3a3'},
+      {id:'av5',name:'Boeing 737',        icon:'✈️',price:800000000, color:'#ef4444'},
+      {id:'av6',name:'Airbus A380',       icon:'🛬',price:4000000000,color:'#1e40af'}
+    ]
+  },
+  yacht: {
+    title:'Яхт-шоп', sub:'Купить яхту',
+    items:[
+      {id:'y1',name:'Моторная лодка',     icon:'⛵',price:500000,    color:'#06b6d4'},
+      {id:'y2',name:'Катер',              icon:'🚤',price:2500000,   color:'#0ea5e9'},
+      {id:'y3',name:'Яхта эконом',        icon:'🛥',price:20000000,  color:'#7dd3fc'},
+      {id:'y4',name:'MundoMarine',        icon:'🛥',price:500000000, color:'#0c4a6e'},
+      {id:'y5',name:'Pelorius',           icon:'🛥',price:7500000000,color:'#1e3a8a'},
+      {id:'y6',name:'Al Saed',            icon:'🛥',price:25000000000,color:'#78350f'}
+    ]
+  }
+};
+
+const FORBES = [
+  {name:'Elliot Misk',      emoji:'👨‍💼',money:433900000000,sphere:'Технологии'},
+  {name:'Jason Bellows',    emoji:'🧔', money:239400000000,sphere:'Технологии'},
+  {name:'Mark Zedeker',     emoji:'👱', money:217700000000,sphere:'Соцсети'},
+  {name:'Liam Ellirman',    emoji:'👨', money:204600000000,sphere:'Технологии'},
+  {name:'Bennet Arno',      emoji:'👔', money:181300000000,sphere:'Мода'},
+  {name:'Lenny Pace',       emoji:'👨‍🦰',money:161400000000,sphere:'Инвестиции'},
+  {name:'Sergey Brinley',   emoji:'👨‍🔬',money:154000000000,sphere:'Технологии'},
+  {name:'Wilfred Buffton',  emoji:'👨‍🦳',money:146200000000,sphere:'Финансы'},
+  {name:'Stefan Ballard',   emoji:'🧑‍💼',money:126000000000,sphere:'Технологии'},
+  {name:'Elon Misk Jr',     emoji:'👨‍🚀',money:110000000000,sphere:'Космос'},
+  {name:'Jeff Bezoff',      emoji:'🛒', money:98000000000, sphere:'E-commerce'},
+  {name:'Byl Gayts',        emoji:'💻', money:87000000000, sphere:'Технологии'}
 ];
 
-const LEVELS = [
-  {need:0,       click:1},
-  {need:1000,    click:2},
-  {need:10000,   click:5},
-  {need:100000,  click:15},
-  {need:1000000, click:50},
-  {need:10000000,click:200},
-  {need:100000000,click:1000},
-  {need:1000000000,click:5000},
-  {need:10000000000,click:25000},
-  {need:100000000000,click:150000}
-];
-
-/* ========== СОСТОЯНИЕ ========== */
+/* ============ СОСТОЯНИЕ ============ */
 let state = {
   money: 0,
   totalEarned: 0,
   clicks: 0,
+  card: 'starter',
+  cardUnlocked: ['starter'],
   businesses: {},
   crypto: {},
   stocks: {},
   realty: {},
+  ownedItems: {},
   prices: {},
   history: {},
   boostUntil: 0
 };
 
 try{
-  const s = localStorage.getItem('moneyEmpire_v2');
-  if(s){ state = {...state, ...JSON.parse(s)}; }
+  const s = localStorage.getItem('moneyEmpire_v3');
+  if(s) state = {...state, ...JSON.parse(s)};
 }catch(e){}
 
-/* Инициализация цен */
 function initPrices(){
-  [...CRYPTO,...STOCKS,...REALTY].forEach(a => {
+  [...CRYPTO,...STOCKS].forEach(a => {
     if(state.prices[a.id] === undefined) state.prices[a.id] = a.start;
     if(!state.history[a.id]){
       state.history[a.id] = [];
       let p = a.start;
-      for(let i=0;i<40;i++){
-        p *= 1 + (Math.random()-0.5)*2*a.vol;
-        state.history[a.id].push(p);
-      }
+      for(let i=0;i<40;i++){ p *= 1 + (Math.random()-0.5)*2*a.vol; state.history[a.id].push(p); }
     }
+  });
+  REALTY.forEach(r => {
+    if(state.prices[r.id] === undefined) state.prices[r.id] = r.price;
   });
 }
 initPrices();
 
-/* ========== ФОРМАТИРОВАНИЕ ========== */
+/* ============ ФОРМАТИРОВАНИЕ ============ */
 function fmt(n){
   n = Math.floor(n);
   const abs = Math.abs(n);
@@ -580,39 +750,47 @@ function fmtPrice(n){
   if(n < 100) return '$' + n.toFixed(2);
   return '$' + Math.floor(n).toLocaleString('ru');
 }
-function fmtFull(n){
-  return '$' + Math.floor(n).toLocaleString('ru');
-}
+function fmtFull(n){ return '$' + Math.floor(n).toLocaleString('ru'); }
 
-/* ========== УРОВЕНЬ ========== */
+/* ============ УРОВЕНЬ ============ */
+const LEVELS = [
+  {need:0, click:1},{need:1000,click:2},{need:10000,click:5},{need:100000,click:15},
+  {need:1000000,click:50},{need:10000000,click:200},{need:100000000,click:1000},
+  {need:1000000000,click:5000},{need:10000000000,click:25000},{need:100000000000,click:150000}
+];
 function getLevelInfo(){
   let lvl = 0;
   for(let i=0;i<LEVELS.length;i++){
-    if(state.totalEarned >= LEVELS[i].need) lvl = i;
-    else break;
+    if(state.totalEarned >= LEVELS[i].need) lvl = i; else break;
   }
-  const cur = LEVELS[lvl];
-  const next = LEVELS[lvl+1];
+  const cur = LEVELS[lvl], next = LEVELS[lvl+1];
   return {
-    level: lvl + 1,
-    click: cur.click,
-    cur: cur.need,
-    next: next ? next.need : cur.need,
-    progress: next ? ((state.totalEarned - cur.need) / (next.need - cur.need)) * 100 : 100
+    level: lvl+1, click: cur.click,
+    cur: cur.need, next: next ? next.need : cur.need,
+    progress: next ? ((state.totalEarned - cur.need)/(next.need - cur.need))*100 : 100
   };
 }
 
-/* ========== ДОХОД ========== */
 function getIncome(){
   let inc = 0;
-  BUSINESSES.forEach(b => {
-    const c = state.businesses[b.id] || 0;
-    inc += c * b.income;
+  BUSINESSES.forEach(b => { inc += (state.businesses[b.id]||0) * b.income; });
+  REALTY.forEach(r => {
+    const q = state.realty[r.id] || 0;
+    inc += q * r.income;
+  });
+  Object.entries(state.stocks).forEach(([id,p]) => {
+    const a = STOCKS.find(x=>x.id===id); if(!a) return;
+    inc += p.amount * a.div;
+  });
+  Object.entries(state.crypto).forEach(([id,p]) => {
+    const a = CRYPTO.find(x=>x.id===id); if(!a) return;
+    const change = state.prices[id] - p.avg;
+    inc += (change >= 0 ? change : change) * 0.001;
   });
   return inc;
 }
 
-/* ========== UI ========== */
+/* ============ UI ============ */
 function updateTop(){
   document.getElementById('walletBalance').textContent = fmtFull(state.money);
   const L = getLevelInfo();
@@ -624,13 +802,20 @@ function updateTop(){
   document.getElementById('lvTarget').textContent = 'Цель: ' + fmt(L.next);
 }
 function updateAll(){
-  updateTop();
-  renderBiz();
-  renderInvest();
-  renderCollections();
+  updateTop(); renderBiz(); renderInvest(); renderMyItems();
+  checkCardUnlock();
 }
 
-/* ========== КЛИК ========== */
+function checkCardUnlock(){
+  CARDS.forEach(c => {
+    if(state.totalEarned >= c.need && !state.cardUnlocked.includes(c.id)){
+      state.cardUnlocked.push(c.id);
+      save();
+    }
+  });
+}
+
+/* ============ КЛИК ============ */
 const tapBtn = document.getElementById('tapBtn');
 const tapZone = document.getElementById('tapZone');
 tapBtn.addEventListener('click', e => {
@@ -640,7 +825,7 @@ tapBtn.addEventListener('click', e => {
   state.money += val;
   state.totalEarned += val;
   state.clicks++;
-  updateTop();
+  updateTop(); checkCardUnlock(); save();
   spawnFloat(e, val);
 });
 function spawnFloat(e, val){
@@ -654,15 +839,12 @@ function spawnFloat(e, val){
   setTimeout(() => el.remove(), 1100);
 }
 
-/* ========== РЕКЛАМА ========== */
+/* ============ РЕКЛАМА ============ */
 function watchAd(){
-  const isBoosted = Date.now() < state.boostUntil;
-  if(isBoosted) return;
-  // Здесь потом подключим настоящую рекламу
+  if(Date.now() < state.boostUntil) return;
   state.boostUntil = Date.now() + 30000;
   updateAdBlock();
   setTimeout(updateAdBlock, 30500);
-  alert('Буст x2 активирован на 30 секунд!');
 }
 function updateAdBlock(){
   const isBoosted = Date.now() < state.boostUntil;
@@ -671,7 +853,7 @@ function updateAdBlock(){
   const sub = document.getElementById('adSub');
   const icon = document.getElementById('adIcon');
   if(isBoosted){
-    const left = Math.ceil((state.boostUntil - Date.now()) / 1000);
+    const left = Math.ceil((state.boostUntil - Date.now())/1000);
     block.classList.add('boosted');
     title.textContent = '🔥 Буст активен';
     sub.textContent = 'Ещё ' + left + ' сек · клик x2';
@@ -684,51 +866,128 @@ function updateAdBlock(){
   }
 }
 
-/* ========== БИЗНЕСЫ ========== */
-function bizCost(b, count){
-  return Math.floor(b.price * Math.pow(1.15, count));
+/* ============ КАРТЫ ============ */
+function openCards(){
+  renderCards();
+  document.getElementById('cardsModal').classList.add('active');
 }
+function closeCards(){ document.getElementById('cardsModal').classList.remove('active'); }
+function renderCards(){
+  const box = document.getElementById('cardsList');
+  box.innerHTML = '';
+  CARDS.forEach(c => {
+    const unlocked = state.cardUnlocked.includes(c.id);
+    const active = state.card === c.id;
+    const el = document.createElement('div');
+    el.className = 'card-preview' + (unlocked ? '' : ' locked');
+    el.style.background = c.grad;
+    el.innerHTML = `
+      <div class="card-preview-name">${c.name}${active ? ' ✓' : ''}</div>
+      <div class="card-preview-req">${unlocked ? (active ? 'Активна' : 'Нажмите чтобы выбрать') : '🔒 Нужно ' + fmt(c.need)}</div>
+    `;
+    if(unlocked && !active) el.onclick = () => { state.card = c.id; save(); renderCards(); };
+    box.appendChild(el);
+  });
+}
+
+/* ============ БИЗНЕСЫ ============ */
+function bizCost(b, count){ return Math.floor(b.price * Math.pow(1.15, count)); }
+function countBiz(){ let n = 0; BUSINESSES.forEach(b => n += (state.businesses[b.id]||0)); return n; }
+
 function renderBiz(){
   const grid = document.getElementById('bizGrid');
   grid.innerHTML = '';
-  let total = 0;
+  const total = countBiz();
+
+  if(total < 10){
+    const addBtn = document.createElement('div');
+    addBtn.className = 'biz-card';
+    addBtn.style.cssText = 'align-items:center;justify-content:center;text-align:center;';
+    addBtn.onclick = openBizPicker;
+    addBtn.innerHTML = `
+      <div class="biz-icon" style="background:var(--gold-l);color:var(--gold);font-size:28px;">+</div>
+      <div><div class="biz-name">Открыть бизнес</div>
+      <div class="biz-meta">Свободно ${10-total}</div></div>`;
+    grid.appendChild(addBtn);
+  }
+
   BUSINESSES.forEach(b => {
     const count = state.businesses[b.id] || 0;
-    if(count > 0) total++;
-    const cost = bizCost(b, count);
-    const can = state.money >= cost;
+    if(count === 0) return;
     const el = document.createElement('div');
-    el.className = 'biz-card' + (can ? '' : ' locked');
+    el.className = 'biz-card';
     el.innerHTML = `
-      ${count > 0 ? `<div class="biz-count">x${count}</div>` : ''}
+      <div class="biz-count">x${count}</div>
       <div class="biz-icon" style="background:${b.color}22;color:${b.color}">${b.icon}</div>
       <div>
         <div class="biz-name">${b.name}</div>
         <div class="biz-meta">+${fmt(b.income)}/сек</div>
       </div>
-      <div class="biz-price">${fmt(cost)}</div>
     `;
-    if(can) el.onclick = () => buyBiz(b.id);
     grid.appendChild(el);
   });
-  document.getElementById('bizIncome').textContent = fmtFull(getIncome() * 60) + ' / час';
-  document.getElementById('bizCount').textContent = total + '/' + BUSINESSES.length;
-}
-function buyBiz(id){
-  const b = BUSINESSES.find(x => x.id === id);
-  const count = state.businesses[id] || 0;
-  const cost = bizCost(b, count);
-  if(state.money < cost) return;
-  state.money -= cost;
-  state.businesses[id] = count + 1;
-  save(); updateTop(); renderBiz();
+
+  document.getElementById('bizIncome').textContent = fmtFull(getIncome()*60) + ' / час';
+  document.getElementById('bizCount').textContent = total + '/10';
 }
 
-/* ========== ИНВЕСТИЦИИ ========== */
+function openBizPicker(){
+  const box = document.getElementById('bizPickerList');
+  box.innerHTML = '';
+  BUSINESSES.forEach(b => {
+    const count = state.businesses[b.id] || 0;
+    const cost = bizCost(b, count);
+    const can = state.money >= cost;
+    const el = document.createElement('div');
+    el.className = 'asset-row';
+    if(!can) el.style.opacity = '.5';
+    el.innerHTML = `
+      <div class="asset-icon" style="background:${b.color}22;color:${b.color}">${b.icon}</div>
+      <div class="asset-info">
+        <div class="asset-name">${b.name} ${count > 0 ? '· x' + count : ''}</div>
+        <div class="asset-ticker">+${fmt(b.income)}/сек</div>
+      </div>
+      <div class="asset-right">
+        <div class="asset-price">${fmt(cost)}</div>
+      </div>
+    `;
+    if(can) el.onclick = () => pickBiz(b.id);
+    box.appendChild(el);
+  });
+  document.getElementById('bizPickerModal').classList.add('active');
+}
+function closeBizPicker(){ document.getElementById('bizPickerModal').classList.remove('active'); }
+
+let pendingBiz = null;
+function pickBiz(id){
+  pendingBiz = id;
+  const b = BUSINESSES.find(x=>x.id===id);
+  const count = state.businesses[id] || 0;
+  const cost = bizCost(b, count);
+  document.getElementById('bizNameTitle').textContent = b.name;
+  document.getElementById('bizNameCost').textContent = fmt(cost);
+  document.getElementById('bizNameInput').value = b.name + ' #' + (count + 1);
+  closeBizPicker();
+  document.getElementById('bizNameModal').classList.add('active');
+}
+function closeBizName(){ document.getElementById('bizNameModal').classList.remove('active'); pendingBiz = null; }
+function confirmBuyBiz(){
+  if(!pendingBiz) return;
+  const b = BUSINESSES.find(x=>x.id===pendingBiz);
+  const count = state.businesses[pendingBiz] || 0;
+  const cost = bizCost(b, count);
+  if(state.money < cost){ alert('Недостаточно денег'); return; }
+  state.money -= cost;
+  state.businesses[pendingBiz] = count + 1;
+  state.totalEarned += 0;
+  save(); updateTop(); renderBiz(); closeBizName();
+}
+
+/* ============ ИНВЕСТИЦИИ ============ */
 let invTab = 'stocks';
 function switchInvest(tab, el){
   invTab = tab;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#screen-invest .tab').forEach(t => t.classList.remove('active'));
   el.classList.add('active');
   renderInvest();
 }
@@ -737,15 +996,44 @@ function getInvList(){
   if(invTab === 'crypto') return CRYPTO;
   return REALTY;
 }
+function getBucket(){
+  if(invTab === 'stocks') return state.stocks;
+  if(invTab === 'crypto') return state.crypto;
+  return state.realty;
+}
 function renderInvest(){
   const box = document.getElementById('invList');
   box.innerHTML = '';
+
+  if(invTab === 'realty'){
+    REALTY.forEach(r => {
+      const owned = state.realty[r.id] || 0;
+      const can = state.money >= r.price;
+      const el = document.createElement('div');
+      el.className = 'asset-row';
+      if(!can) el.style.opacity = '.5';
+      el.innerHTML = `
+        <div class="asset-icon" style="background:${r.color}22;color:${r.color};font-size:24px;">${r.icon}</div>
+        <div class="asset-info">
+          <div class="asset-name">${r.name} ${owned ? '· x'+owned : ''}</div>
+          <div class="asset-ticker">+${fmt(r.income)}/сек</div>
+        </div>
+        <div class="asset-right">
+          <div class="asset-price">${fmt(r.price)}</div>
+        </div>
+      `;
+      if(can) el.onclick = () => buyRealty(r.id);
+      box.appendChild(el);
+    });
+    return;
+  }
+
   const list = getInvList();
   list.forEach(a => {
     const price = state.prices[a.id];
     const hist = state.history[a.id];
-    const old = hist[hist.length - 2] || price;
-    const change = ((price - old) / old) * 100;
+    const old = hist[hist.length-2] || price;
+    const change = ((price-old)/old)*100;
     const cls = change >= 0 ? 'up' : 'down';
     const sign = change >= 0 ? '+' : '';
     const el = document.createElement('div');
@@ -766,53 +1054,47 @@ function renderInvest(){
   });
 }
 
-/* ========== МОДАЛКА АКТИВА ========== */
-let currentAsset = null;
-let currentList = null;
+function buyRealty(id){
+  const r = REALTY.find(x=>x.id===id);
+  if(state.money < r.price) return;
+  state.money -= r.price;
+  state.realty[id] = (state.realty[id]||0) + 1;
+  save(); updateTop(); renderInvest();
+}
+
+/* ============ АКТИВ МОДАЛКА ============ */
+let currentAsset = null, currentList = null;
 function openAsset(id){
   currentAsset = id;
   currentList = getInvList();
-  const a = currentList.find(x => x.id === id);
+  const a = currentList.find(x=>x.id===id);
   document.getElementById('assetName').textContent = a.name;
   document.getElementById('assetTicker').textContent = a.ticker;
   document.getElementById('assetAmount').value = 1;
   refreshAsset();
   document.getElementById('assetModal').classList.add('active');
 }
-function closeAsset(){
-  document.getElementById('assetModal').classList.remove('active');
-  currentAsset = null;
-}
-function getBucket(){
-  if(invTab === 'stocks') return state.stocks;
-  if(invTab === 'crypto') return state.crypto;
-  return state.realty;
-}
+function closeAsset(){ document.getElementById('assetModal').classList.remove('active'); currentAsset = null; }
 function refreshAsset(){
   if(!currentAsset) return;
-  const a = currentList.find(x => x.id === currentAsset);
+  const a = currentList.find(x=>x.id===currentAsset);
   const price = state.prices[a.id];
   const hist = state.history[a.id];
-  const old = hist[hist.length - 2] || price;
-  const change = ((price - old) / old) * 100;
-
+  const old = hist[hist.length-2] || price;
+  const change = ((price-old)/old)*100;
   document.getElementById('assetPrice').textContent = fmtPrice(price);
   const chEl = document.getElementById('assetChange');
-  chEl.textContent = (change >= 0 ? '▲ +' : '▼ ') + change.toFixed(2) + '%';
-  chEl.className = 'chart-change ' + (change >= 0 ? 'up' : 'down');
-
+  chEl.textContent = (change>=0?'▲ +':'▼ ') + change.toFixed(2) + '%';
+  chEl.className = 'chart-change ' + (change>=0?'up':'down');
   drawChart(hist, a.color);
-
   const bucket = getBucket();
-  const port = bucket[a.id] || {amount:0, avg:0};
+  const port = bucket[a.id] || {amount:0,avg:0};
   const val = port.amount * price;
-  const pnl = port.amount > 0 ? (val - port.amount * port.avg) : 0;
+  const pnl = port.amount > 0 ? (val - port.amount*port.avg) : 0;
   document.getElementById('assetPort').innerHTML =
-    `В портфеле: <b>${port.amount}</b><br>
-     Средняя цена: <b>${fmtPrice(port.avg)}</b><br>
+    `В портфеле: <b>${port.amount}</b><br>Средняя: <b>${fmtPrice(port.avg)}</b><br>
      Стоимость: <b>${fmtPrice(val)}</b><br>
-     ${port.amount > 0 ? (pnl >= 0 ? 'Прибыль: <b style="color:var(--green)">+' : 'Убыток: <b style="color:var(--red)">') + fmtPrice(Math.abs(pnl)) + '</b>' : ''}`;
-
+     ${port.amount>0 ? (pnl>=0?'Прибыль: <b style="color:var(--green)">+':'Убыток: <b style="color:var(--red)">')+fmtPrice(Math.abs(pnl))+'</b>' : ''}`;
   document.getElementById('btnSell').classList.toggle('disabled', port.amount <= 0);
 }
 function drawChart(hist, color){
@@ -826,49 +1108,32 @@ function drawChart(hist, color){
   const min = Math.min(...hist), max = Math.max(...hist);
   const range = max - min || 1;
   const pad = 6;
-  const stepX = (w - pad*2) / (hist.length - 1);
+  const stepX = (w - pad*2)/(hist.length-1);
   const col = color || '#f4d160';
-
   ctx.beginPath();
-  ctx.moveTo(pad, h - pad);
-  hist.forEach((p,i) => {
-    const x = pad + i*stepX;
-    const y = h - pad - ((p - min)/range) * (h - pad*2);
-    ctx.lineTo(x,y);
-  });
-  ctx.lineTo(w - pad, h - pad);
-  ctx.closePath();
-  const grad = ctx.createLinearGradient(0,0,0,h);
-  grad.addColorStop(0, col + '66');
-  grad.addColorStop(1, col + '00');
-  ctx.fillStyle = grad;
-  ctx.fill();
-
+  ctx.moveTo(pad, h-pad);
+  hist.forEach((p,i)=>{ const x=pad+i*stepX; const y=h-pad-((p-min)/range)*(h-pad*2); ctx.lineTo(x,y); });
+  ctx.lineTo(w-pad, h-pad); ctx.closePath();
+  const g = ctx.createLinearGradient(0,0,0,h);
+  g.addColorStop(0,col+'66'); g.addColorStop(1,col+'00');
+  ctx.fillStyle = g; ctx.fill();
   ctx.beginPath();
-  hist.forEach((p,i) => {
-    const x = pad + i*stepX;
-    const y = h - pad - ((p - min)/range) * (h - pad*2);
-    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-  });
-  ctx.strokeStyle = col;
-  ctx.lineWidth = 2;
-  ctx.lineJoin = 'round';
-  ctx.stroke();
+  hist.forEach((p,i)=>{ const x=pad+i*stepX; const y=h-pad-((p-min)/range)*(h-pad*2); if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y); });
+  ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.lineJoin='round'; ctx.stroke();
 }
 
-/* ========== КУПЛЯ/ПРОДАЖА ========== */
 function doBuy(){
   if(!currentAsset) return;
   const amount = parseFloat(document.getElementById('assetAmount').value);
   if(!amount || amount <= 0) return;
   const price = state.prices[currentAsset];
-  const cost = price * amount;
+  const cost = price*amount;
   if(state.money < cost){ alert('Недостаточно денег!'); return; }
   const bucket = getBucket();
-  const cur = bucket[currentAsset] || {amount:0, avg:0};
-  const newAmount = cur.amount + amount;
-  const newAvg = (cur.amount * cur.avg + cost) / newAmount;
-  bucket[currentAsset] = {amount:newAmount, avg:newAvg};
+  const cur = bucket[currentAsset] || {amount:0,avg:0};
+  const newA = cur.amount + amount;
+  const newAvg = (cur.amount*cur.avg + cost)/newA;
+  bucket[currentAsset] = {amount:newA,avg:newAvg};
   state.money -= cost;
   save(); updateTop(); refreshAsset(); renderInvest();
 }
@@ -877,122 +1142,208 @@ function doSell(){
   const amount = parseFloat(document.getElementById('assetAmount').value);
   if(!amount || amount <= 0) return;
   const bucket = getBucket();
-  const cur = bucket[currentAsset] || {amount:0, avg:0};
+  const cur = bucket[currentAsset] || {amount:0,avg:0};
   if(cur.amount < amount){ alert('У вас нет столько!'); return; }
   const price = state.prices[currentAsset];
-  state.money += price * amount;
+  state.money += price*amount;
   cur.amount -= amount;
-  if(cur.amount <= 0) delete bucket[currentAsset];
-  else bucket[currentAsset] = cur;
+  if(cur.amount <= 0) delete bucket[currentAsset]; else bucket[currentAsset] = cur;
   save(); updateTop(); refreshAsset(); renderInvest();
 }
 
-/* ========== ПРЕДМЕТЫ ========== */
-function renderCollections(){
-  const grid = document.getElementById('collectionsGrid');
-  grid.innerHTML = '';
-  COLLECTIONS.forEach(c => {
+/* ============ МАГАЗИНЫ ============ */
+let currentShop = null;
+function openShop(id){
+  currentShop = id;
+  const shop = SHOP_ITEMS[id];
+  document.getElementById('shopTitle').textContent = shop.title;
+  document.getElementById('shopSub').textContent = shop.sub;
+  renderShop();
+  document.getElementById('shopModal').classList.add('active');
+}
+function closeShop(){ document.getElementById('shopModal').classList.remove('active'); }
+function renderShop(){
+  const box = document.getElementById('shopList');
+  box.innerHTML = '';
+  const shop = SHOP_ITEMS[currentShop];
+  shop.items.forEach(it => {
+    const owned = state.ownedItems[it.id] || 0;
+    const can = state.money >= it.price;
     const el = document.createElement('div');
-    el.className = 'biz-card locked';
+    el.className = 'asset-row';
+    if(!can) el.style.opacity = '.5';
     el.innerHTML = `
-      <div class="biz-icon" style="background:#a78bfa22;color:#a78bfa">${c.icon}</div>
-      <div>
-        <div class="biz-name">${c.name}</div>
-        <div class="biz-meta">0 из ${c.total}</div>
+      <div class="asset-icon" style="background:${it.color}22;color:${it.color};font-size:24px;">${it.icon}</div>
+      <div class="asset-info">
+        <div class="asset-name">${it.name} ${owned?'· x'+owned:''}</div>
+        <div class="asset-ticker">${owned?'В коллекции':'Купить'}</div>
+      </div>
+      <div class="asset-right">
+        <div class="asset-price">${fmt(it.price)}</div>
       </div>
     `;
-    grid.appendChild(el);
+    if(can) el.onclick = () => buyItem(it.id, it.price);
+    box.appendChild(el);
+  });
+}
+function buyItem(id, price){
+  if(state.money < price) return;
+  state.money -= price;
+  state.ownedItems[id] = (state.ownedItems[id]||0) + 1;
+  save(); updateTop(); renderShop(); renderMyItems();
+}
+function renderMyItems(){
+  const box = document.getElementById('myItemsList');
+  if(!box) return;
+  box.innerHTML = '';
+  const keys = Object.keys(state.ownedItems);
+  if(!keys.length){
+    box.innerHTML = '<div class="empty">Пока ничего не куплено</div>';
+    return;
+  }
+  keys.forEach(id => {
+    let item = null;
+    for(const shop of Object.values(SHOP_ITEMS)){
+      const found = shop.items.find(x=>x.id===id);
+      if(found){ item = found; break; }
+    }
+    if(!item) return;
+    const el = document.createElement('div');
+    el.className = 'asset-row';
+    el.innerHTML = `
+      <div class="asset-icon" style="background:${item.color}22;color:${item.color};font-size:24px;">${item.icon}</div>
+      <div class="asset-info">
+        <div class="asset-name">${item.name}</div>
+        <div class="asset-ticker">В коллекции</div>
+      </div>
+      <div class="asset-right">
+        <div class="asset-price">x${state.ownedItems[id]}</div>
+      </div>
+    `;
+    box.appendChild(el);
   });
 }
 
-/* ========== ПРОФИЛЬ ========== */
+/* ============ ПРОФИЛЬ ============ */
 function updateProfile(){
   const w = document.getElementById('profAva');
   const n = document.getElementById('profName');
   if(window.Telegram?.WebApp?.initDataUnsafe?.user){
     const u = window.Telegram.WebApp.initDataUnsafe.user;
-    if(u.photo_url){ w.innerHTML = `<img src="${u.photo_url}">`; }
-    else { w.textContent = (u.first_name || 'И').charAt(0).toUpperCase(); }
-    n.textContent = ((u.first_name || '') + ' ' + (u.last_name || '')).trim() || 'Игрок';
+    if(u.photo_url) w.innerHTML = `<img src="${u.photo_url}">`;
+    else w.textContent = (u.first_name||'И').charAt(0).toUpperCase();
+    n.textContent = ((u.first_name||'')+' '+(u.last_name||'')).trim() || 'Игрок';
   }
-
   const L = getLevelInfo();
   document.getElementById('profLvl').textContent = 'Уровень ' + L.level;
 
-  // Общее состояние = деньги + все активы
   let total = state.money;
-  // Бизнесы (по цене покупки)
-  let bizValue = 0;
-  BUSINESSES.forEach(b => {
-    const c = state.businesses[b.id] || 0;
-    bizValue += c * b.price;
+  let bizVal = 0; BUSINESSES.forEach(b => bizVal += (state.businesses[b.id]||0)*b.price);
+  let stVal = 0; Object.entries(state.stocks).forEach(([id,p]) => stVal += p.amount*(state.prices[id]||0));
+  let crVal = 0; Object.entries(state.crypto).forEach(([id,p]) => crVal += p.amount*(state.prices[id]||0));
+  let rlVal = 0; Object.entries(state.realty).forEach(([id,q]) => { const r = REALTY.find(x=>x.id===id); if(r) rlVal += q*r.price; });
+  let trVal = 0; Object.keys(state.ownedItems).forEach(id => {
+    for(const shop of Object.values(SHOP_ITEMS)){
+      const f = shop.items.find(x=>x.id===id);
+      if(f){ trVal += state.ownedItems[id]*f.price; break; }
+    }
   });
-  // Акции
-  let stVal = 0;
-  Object.entries(state.stocks).forEach(([id, p]) => {
-    stVal += p.amount * (state.prices[id] || 0);
-  });
-  // Крипта
-  let crVal = 0;
-  Object.entries(state.crypto).forEach(([id, p]) => {
-    crVal += p.amount * (state.prices[id] || 0);
-  });
-  // Недвижимость
-  let rlVal = 0;
-  Object.entries(state.realty).forEach(([id, p]) => {
-    rlVal += p.amount * (state.prices[id] || 0);
-  });
-  total += bizValue + stVal + crVal + rlVal;
+  total += bizVal + stVal + crVal + rlVal + trVal;
 
   document.getElementById('profWealth').textContent = fmtFull(total);
   document.getElementById('bdCash').textContent = fmt(state.money);
-  document.getElementById('bdBiz').textContent = fmt(bizValue);
+  document.getElementById('bdBiz').textContent = fmt(bizVal);
   document.getElementById('bdStocks').textContent = fmt(stVal);
   document.getElementById('bdCrypto').textContent = fmt(crVal);
   document.getElementById('bdRealty').textContent = fmt(rlVal);
-  document.getElementById('bdClicks').textContent = state.clicks.toLocaleString('ru');
+  document.getElementById('bdTransport').textContent = fmt(trVal);
+
+  document.getElementById('stClicks').textContent = state.clicks.toLocaleString('ru');
+  document.getElementById('stBiz').textContent = countBiz();
+  document.getElementById('stEarned').textContent = fmtFull(state.totalEarned);
 }
 
-/* ========== НАВИГАЦИЯ ========== */
+/* ============ FORBES ============ */
+function openForbes(){
+  renderForbes();
+  document.getElementById('forbesModal').classList.add('active');
+}
+function closeForbes(){ document.getElementById('forbesModal').classList.remove('active'); }
+function renderForbes(){
+  const top3 = document.getElementById('forbesTop3');
+  const list = document.getElementById('forbesList');
+  top3.innerHTML = '';
+  list.innerHTML = '';
+
+  const podium = [FORBES[1], FORBES[0], FORBES[2]];
+  const cls = ['','gold','bronze'];
+  podium.forEach((p,i) => {
+    const el = document.createElement('div');
+    el.className = 'forbes-podium';
+    el.innerHTML = `
+      <div class="forbes-ava ${cls[i]}" style="font-size:${cls[i]==='gold'?'34':'28'}px;">${p.emoji}</div>
+      <div class="forbes-name">${p.name}</div>
+      <div class="forbes-money">${fmt(p.money)}</div>
+    `;
+    top3.appendChild(el);
+  });
+
+  FORBES.forEach((p,i) => {
+    const el = document.createElement('div');
+    el.className = 'forbes-item';
+    el.innerHTML = `
+      <div class="forbes-rank">${i+1}</div>
+      <div class="forbes-ava-sm">${p.emoji}</div>
+      <div class="forbes-info">
+        <div class="forbes-item-name">${p.name}</div>
+        <div class="forbes-item-sub">${p.sphere}</div>
+      </div>
+      <div class="forbes-item-money">${fmt(p.money)}</div>
+    `;
+    list.appendChild(el);
+  });
+}
+
+/* ============ НАВИГАЦИЯ ============ */
 function switchTab(tab){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('screen-' + tab).classList.add('active');
+  document.getElementById('screen-'+tab).classList.add('active');
   document.querySelector(`.nav-item[data-tab="${tab}"]`).classList.add('active');
   if(tab === 'profile') updateProfile();
   if(tab === 'biz') renderBiz();
   if(tab === 'invest') renderInvest();
-  if(tab === 'items') renderCollections();
+  if(tab === 'items') renderMyItems();
 }
 
-/* ========== СБРОС ========== */
+/* ============ СБРОС ============ */
 function resetGame(){
   if(!confirm('Точно сбросить весь прогресс?')) return;
-  localStorage.removeItem('moneyEmpire_v2');
+  localStorage.removeItem('moneyEmpire_v3');
   location.reload();
 }
 
-/* ========== СОХРАНЕНИЕ ========== */
+/* ============ СОХРАНЕНИЕ ============ */
 function save(){
-  try{ localStorage.setItem('moneyEmpire_v2', JSON.stringify(state)); }catch(e){}
+  try{ localStorage.setItem('moneyEmpire_v3', JSON.stringify(state)); }catch(e){}
 }
 setInterval(save, 5000);
 
-/* ========== ПАССИВНЫЙ ДОХОД ========== */
+/* ============ ПАССИВНЫЙ ДОХОД ============ */
 setInterval(() => {
-  const inc = getIncome() / 10;
+  const inc = getIncome()/10;
   if(inc > 0){
     state.money += inc;
     state.totalEarned += inc;
-    updateTop();
+    updateTop(); checkCardUnlock();
   }
 }, 100);
 
-/* ========== КОЛЕБАНИЕ ЦЕН ========== */
+/* ============ КОЛЕБАНИЕ ЦЕН ============ */
 setInterval(() => {
-  [...CRYPTO, ...STOCKS, ...REALTY].forEach(a => {
+  [...CRYPTO, ...STOCKS].forEach(a => {
     const change = (Math.random()-0.5)*2*a.vol;
-    state.prices[a.id] = Math.max(0.0001, state.prices[a.id] * (1 + change));
+    state.prices[a.id] = Math.max(0.0001, state.prices[a.id]*(1+change));
     const h = state.history[a.id];
     h.push(state.prices[a.id]);
     if(h.length > 50) h.shift();
@@ -1001,13 +1352,13 @@ setInterval(() => {
   if(currentAsset) refreshAsset();
 }, 3000);
 
-/* ========== БУСТ (обновление таймера) ========== */
+/* ============ ТАЙМЕР БУСТА ============ */
 setInterval(() => {
   updateAdBlock();
   updateTop();
 }, 1000);
 
-/* ========== СТАРТ ========== */
+/* ============ СТАРТ ============ */
 updateAll();
 updateAdBlock();
 updateProfile();
@@ -1018,4 +1369,4 @@ if(window.Telegram?.WebApp){
 }
 </script>
 </body>
-  </html>
+</html>
